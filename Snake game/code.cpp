@@ -119,9 +119,11 @@ void Snake::Setting()
 	gotoXY(10, 0);
 	std::cout << "MAIN MENU";
 	gotoXY(21, 4);
-	std::cout << "1. Play" << std::endl;
+	std::cout << "1. PLAY" << std::endl;
 	gotoXY(21, 5);
-	std::cout << "2. OPTION" << std::endl;
+	std::cout << "2. OPTIONS" << std::endl;
+	gotoXY(21, 6);
+	std::cout << "3. EXIT" << std::endl;
 	for (int i = 10; i <= 40; i++)
 	{
 		gotoXY(i, 1);
@@ -177,6 +179,8 @@ void Snake::Setting()
 			ChonMauRan();
 		}
 	}
+	else if (temp == (int)'3')
+		exit(0);
 }
 
 bool Snake::kt_ran_an_qua() 
