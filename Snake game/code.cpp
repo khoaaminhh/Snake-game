@@ -178,9 +178,107 @@ void Snake::Setting()
 		}
 	}
 }
+
+bool Snake::kt_ran_an_qua() 
+{
+	return  (toa_dox[0] == xqua && toa_doy[0] == yqua);
+}
+
+// xử lí khi rắn ăn quả
+void Snake::xu_li_ran_an_qua() 
+{
+	if (kt_ran_an_qua()) 
+	{
+		sl++;
+		score += tocdo;
+		qua_to++;
+		if (qua_to % 5 != 0) 
+		{
+			tao_qua();
+			ve_qua();
+			xuat_diem();
+		}
+		else if (qua_to % 5 == 0) 
+		{
+			tao_qua_to();
+			ve_qua_to();
+		}
+	}
+}
+
+//kiểm tra quả xuất hiện có trùng với rắn không
+bool Snake::kiem_tra_ran_de_qua() 
+{
+	for (int i = 0; i < sl; i++) 
+	{
+		if (toa_dox[i] == xqua && toa_doy[i] == yqua) return true;
+	}
+	return false;
+}
+
+//kiểm tra rắn chạm thân
+bool Snake::kiem_tra_ran_cham_than() 
+{
+	for (int i = 4; i < sl; i++) 
+	{
+		if (toa_dox[0] == toa_dox[i] && toa_doy[0] == toa_doy[i]) return true;
+	}
+	return false;
+}
+
+void Snake::xu_li_ran_an_qua_to() 
+{
+	if (kt_ran_an_qua_to()) 
+	{
+		sl++;
+		score += 10;
+		qua_to++;
+		for (int i = xqua_to - 1; i <= xqua_to + 1; i++) 
+		{
+			for (int j = yqua_to - 1; j <= yqua_to + 1; j++)
+			{
+				gotoXY(i, j);
+				std::cout << " ";
+			}
+		}
+		tao_qua();
+		ve_qua();
+		xuat_diem();
+	}
+}
+
+bool Snake::kt_ran_an_qua_to() 
+{
+	if      (toa_dox[0] == xqua_to - 1 && toa_doy[0] == yqua_to - 1) return true;
+	else if (toa_dox[0] == xqua_to && toa_doy[0] == yqua_to - 1) return true;
+	else if (toa_dox[0] == xqua_to + 1 && toa_doy[0] == yqua_to - 1) return true;
+	else if (toa_dox[0] == xqua_to + 1 && toa_doy[0] == yqua_to) return true;
+	else if (toa_dox[0] == xqua_to + 1 && toa_doy[0] == yqua_to + 1) return true;
+	else if (toa_dox[0] == xqua_to && toa_doy[0] == yqua_to + 1) return true;
+	else if (toa_dox[0] == xqua_to - 1 && toa_doy[0] == yqua_to + 1) return true;
+	else if (toa_dox[0] == xqua_to - 1 && toa_doy[0] == yqua_to) return true;
+	return false;
+}
+
+bool Snake::kiem_tra_ran_de_qua_to() 
+{
+	for (int i = 0; i < sl; i++) 
+	{
+		if (toa_dox[i] == xqua_to && toa_doy[i] == yqua_to) return true;
+		else if (toa_dox[i] == xqua_to - 1 && toa_doy[i] == yqua_to - 1) return true;
+		else if (toa_dox[i] == xqua_to && toa_doy[i] == yqua_to - 1) return true;
+		else if (toa_dox[i] == xqua_to + 1 && toa_doy[i] == yqua_to - 1) return true;
+		else if (toa_dox[i] == xqua_to + 1 && toa_doy[i] == yqua_to) return true;
+		else if (toa_dox[i] == xqua_to + 1 && toa_doy[i] == yqua_to + 1) return true;
+		else if (toa_dox[i] == xqua_to && toa_doy[i] == yqua_to + 1) return true;
+		else if (toa_dox[i] == xqua_to - 1 && toa_doy[i] == yqua_to + 1) return true;
+		else if (toa_dox[i] == xqua_to - 1 && toa_doy[i] == yqua_to) return true;
+	}
+	return false;
+}
+
 void Snake::ChonMauRan()
 {
-
 	SetColor(11);
 	for (int i = 10; i <= 40; i++)
 	{

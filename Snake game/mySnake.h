@@ -22,6 +22,12 @@ public:
 	void ChonTocDo(); 
 	void ChonMauRan();
 	void Setting();
-
-
+	bool kt_ran_an_qua(); 
+	void ve_qua(); 
+	void xu_li_ran_an_qua(); 
+	bool kiem_tra_ran_de_qua(); 
+	bool kiem_tra_ran_cham_than(); 
+	bool kiem_tra_ran_de_qua_to();
+	void xu_li_ran_an_qua_to(); 
+	bool kt_ran_an_qua_to(); 
 };
