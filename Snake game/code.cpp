@@ -2,11 +2,11 @@
 using namespace std;
 
 
-void Snake::KhoiTaoRan()
+void Snake::KhoiTaoRan() 
 {
 	int khoi_tao_x = 50;
 	int khoi_tao_y = 13;
-	for (int i = 0; i < sl; i++)
+	for (int i = 0; i < sl; i++) 
 	{
 		toa_dox[i] = khoi_tao_x--;
 		toa_doy[i] = khoi_tao_y;
@@ -14,16 +14,19 @@ void Snake::KhoiTaoRan()
 }
 
 //vẽ rắn
-void Snake::VeRan()
+void Snake::VeRan() 
 {
 	SetColor(mau_ran);
-	for (int i = 0; i < sl; i++)
+	for (int i = 0; i < sl; i++) 
 	{
 		gotoXY(toa_dox[i], toa_doy[i]);
 		if (i == 0) std::cout << (char)254;
 		else std::cout << (char)249;
 	}
 }
+
+
+
 void Snake::VeTuong() {
 	SetColor(11);
 	for (int i = 10; i <= 100; i++) {
