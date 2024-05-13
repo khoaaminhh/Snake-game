@@ -468,6 +468,30 @@ void Snake::Play()
 	}
 }
 
+
+void Snake::TaoQuaTo() 
+{
+	this->xqua_to = rand() % (98 - 12 + 1) + 12;
+	this->yqua_to = rand() % (23 - 3 + 1) + 3;
+	if (KtRanDeQuaTo())
+		TaoQuaTo();
+}
+
+void Snake::VeQuaTo() 
+{
+	if (!KtRanDeQuaTo()) 
+	{
+		for (int i = xqua_to - 1; i <= xqua_to + 1; i++) 
+		{
+			for (int j = yqua_to - 1; j <= yqua_to + 1; j++)
+			{
+				gotoXY(i, j);
+				std::cout << "*";
+			}
+		}
+	}
+}
+
 int main() {
 	Snake snake;
 	snake.Play();
