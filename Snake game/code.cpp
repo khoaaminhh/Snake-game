@@ -1,10 +1,5 @@
 #include"mySnake.h"
 using namespace std;
-void Snake::Play() {
-	VeTuong();
-	KhoiTaoRan();
-	VeRan();
-}
 
 
 void Snake::KhoiTaoRan() {
@@ -343,6 +338,128 @@ void Snake::ChonMauRan()
 	system("cls");
 	Setting();
 }
+
+void Snake::Play()
+{
+	system("cls");
+
+	Setting();
+
+	ShowCur(0);
+
+	//build gamex
+	VeTuong();
+	KhoiTaoRan();
+
+	TaoQua();
+	VeQua();
+
+	XuatDiem();
+	int x = toa_dox[0];
+	int y = toa_doy[0];
+
+	//điều kiện chạy
+		//- check = 0 đi xuống 
+		//- check = 1 đi lên
+		//- check = 2 sang trái
+		//- check = 3 sang phải
+	int check = 3;
+
+	//Play
+	while (true)
+	{
+		//xóa đuôi
+		gotoXY(toa_dox[sl], toa_doy[sl]);
+		std::cout << " ";
+
+		// vẽ rắn
+		VeRan();
+
+		//điều khiển
+			//sử dụng các phím mũi tên hoặc w, a, s, d để di chuyển rắn
+		if (_kbhit())
+		{
+			char c = _getch();
+			if (c == -32)
+			{
+				c = _getch();
+				if (c == 72 && check != 0) check = 1;
+				else if (c == 80 && check != 1) check = 0;
+				else if (c == 75 && check != 3) check = 2;
+				else if (c == 77 && check != 2) check = 3;
+			}
+			if ((c == (int)'w' || c == (int)'W') && check != 0) check = 1;
+			else if ((c == (int)'s' || c == (int)'S') && check != 1) check = 0;
+			else if ((c == (int)'a' || c == (int)'A') && check != 3) check = 2;
+			else if ((c == (int)'d' || c == (int)'D') && check != 2) check = 3;
+		}
+		if (check == 3) x++;
+		else if (check == 2) x--;
+		else if (check == 1) y--;
+		else if (check == 0) y++;
+
+		//kiểm tra biên
+		if (GameOver(toa_dox[0], toa_doy[0]))
+		{
+			SetColor(12);
+
+			system("cls");
+			std::cout << "Game over";
+			break;
+		}
+
+		if (qua_to % 5 != 0) XuLiRanAnQua();
+		else if (qua_to % 5 == 0) XuLiRanAnQuaTo();
+		DiChuyen(x, y);
+		Sleep(sleep);
+	}
+	system("cls");
+	if (GameOver(toa_dox[0], toa_doy[0]) == true)
+	{
+		if (score >= kyluc)
+			kyluc = score;
+
+		SetColor(11);
+		for (int i = 10; i <= 40; i++)
+		{
+			gotoXY(i, 1);
+			std::cout << (char)176;
+			gotoXY(i, 10);
+			std::cout << (char)176;
+		}
+		for (int i = 1; i <= 10; i++)
+		{
+			gotoXY(10, i);
+			std::cout << (char)176;
+			gotoXY(40, i);
+			std::cout << (char)176;
+		}
+		gotoXY(10, 0);
+		std::cout << "GAME OVER";
+		gotoXY(12, 5); std::cout << "PRESS M TO RETURN MAIN MENU";
+		gotoXY(12, 6); std::cout << "PRESS R TO WATCH RECORD";
+		int temp = _getch();
+		if (temp == (int)'m')
+		{
+			sl = 1;
+			score = 0;
+			Play();
+		}
+		if (temp == (int)'r' || temp == (int)'R')
+		{
+			for (int i = 11; i <= 39; i++) {
+				gotoXY(i, 5); std::cout << " ";
+			}
+			gotoXY(12, 5); std::cout << "YOUR RECORD: " << kyluc;
+			gotoXY(12, 6); std::cout << "PRESS M TO RETURN MAIN MENU";
+			score = 0;
+			sl = 1;
+			int cur = _getch();
+			if (cur == (int)'m' || cur == (int)'m') Play();
+		}
+	}
+}
+
 
 int main() {
 	Snake snake;
