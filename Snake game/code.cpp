@@ -468,7 +468,6 @@ void Snake::Play()
 	}
 }
 
-
 void Snake::TaoQuaTo() 
 {
 	this->xqua_to = rand() % (98 - 12 + 1) + 12;
