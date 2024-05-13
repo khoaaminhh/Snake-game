@@ -25,7 +25,23 @@ void Snake::VeRan()
 	}
 }
 
+void Snake::TaoQua() 
+{
+	this->xqua = rand() % (99 - 11 + 1) + 11;
+	this->yqua = rand() % (24 - 2 + 1) + 2;
+	if (KtRanDeQua()) 
+	{
+		TaoQua();
+	}
+}
 
+//vẽ quả
+void Snake::VeQua() 
+{
+	SetColor(15);
+	gotoXY(xqua, yqua); std::cout << '*';
+
+}
 
 void Snake::VeTuong() {
 	SetColor(11);
