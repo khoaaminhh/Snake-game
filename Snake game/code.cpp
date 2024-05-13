@@ -491,6 +491,28 @@ void Snake::VeQuaTo()
 	}
 }
 
+void Snake::XuatDiem() 
+{
+	SetColor(3);
+	for (int i = 101; i <= 115; i++) 
+	{
+		gotoXY(i, 1);
+		std::cout << (char)207;
+		gotoXY(i, 5);
+		std::cout << (char)209;
+	}
+	for (int i = 1; i <= 5; i++) 
+	{
+		gotoXY(115, i);
+		std::cout << (char)198;
+		gotoXY(101, i);
+		std::cout << (char)181;
+	}
+	gotoXY(104, 3);
+	std::cout << "Score: " << score;
+}
+
+
 int main() {
 	Snake snake;
 	snake.Play();
