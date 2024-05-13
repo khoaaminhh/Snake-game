@@ -8,11 +8,15 @@ private:
 	int toa_dox[MAX] = { '0' };
 	int toa_doy[MAX] = { '0' };
 	int sl = 1;
+	int tocdo = 1;
+	int score = 0;
+	int mau_ran;
+	int sleep = 200;
+	static int kyluc;
+
 	int xqua = -1, yqua = -1;
 	int xqua_to = -1, yqua_to = -1;
-	int tocdo = 1;
-	int sleep = 200;
-	int mau_ran; 
+	int qua_to = 1;
 
 public:
 	void Play();
@@ -30,4 +34,8 @@ public:
 	bool kiem_tra_ran_de_qua_to();
 	void xu_li_ran_an_qua_to(); 
 	bool kt_ran_an_qua_to(); 
+
+
+
+
 };
