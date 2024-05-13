@@ -1,10 +1,5 @@
 #include"mySnake.h"
 using namespace std;
-void Snake::Play() {
-	VeTuong();
-	KhoiTaoRan();
-	VeRan();
-}
 
 
 void Snake::KhoiTaoRan() {
